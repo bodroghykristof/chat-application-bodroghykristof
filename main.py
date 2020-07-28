@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send, join_room
+import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
@@ -17,10 +18,10 @@ def join_chat_room(room):
     join_room(room)
 
 
-@socketio.on('message')
-def mirror_messages(message):
-    print('Message: ' + message)
-    send(message, broadcast=True)
+@socketio.on('get_message')
+def mirror_messages(data):
+    data_object = json.loads(data)
+    send(data_object['message'], broadcast=True)
 
 
 if __name__ == '__main__':
