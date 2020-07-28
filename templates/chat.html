@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Switch your room!</h1>
+    <div class="messages-board">
+        <div class="rooms">
+            {% for _ in range(1, 7) %}
+                <p data-room="{{ loop.index }}" class="room-link">Room {{ loop.index }}</p>
+            {% endfor %}
+        </div>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" type="text/javascript" defer></script>
+<script src="{{ url_for('static', filename='room.js') }}" type="text/javascript" defer></script>
+<script src="{{ url_for('static', filename='script.js') }}" type="text/javascript" defer></script>
+</body>
+</html>
