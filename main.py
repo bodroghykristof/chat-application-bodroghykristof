@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
@@ -12,9 +12,15 @@ def mirror_messages(message):
     send(message, broadcast=True)
 
 
+@app.route('/room')
+def chat_room():
+    room_number = request.args.get('room')
+    return render_template('index.html', room=room_number)
+
+
 @app.route('/')
-def index():
-    return render_template('index.html')
+def rooms():
+    return render_template('rooms.html')
 
 
 if __name__ == '__main__':

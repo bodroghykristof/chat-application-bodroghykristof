@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooms</title>
+</head>
+<body>
+    <h1>Switch your room!</h1>
+    {% for _ in range(1, 7) %}
+        <a href="{{ url_for('chat_room', room=loop.index) }}">Room {{ loop.index }}</a><br>
+    {% endfor %}
+</body>
+</html>
