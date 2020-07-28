@@ -21,7 +21,12 @@ def join_chat_room(room):
 @socketio.on('get_message')
 def mirror_messages(data):
     data_object = json.loads(data)
-    send(data_object['message'], broadcast=True)
+    send(data, broadcast=True, room=data_object['room'])
+
+
+@socketio.on('message')
+def log_message(message):
+    print(message)
 
 
 if __name__ == '__main__':

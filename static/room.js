@@ -8,9 +8,10 @@ function logConnectionOnServer() {
 }
 
 function addMessageToChatBoard(message) {
-    const chatBoard = document.querySelector('.messages-board');
+    let messageObject = JSON.parse(message)
+    const chatBoard = document.querySelector(`#board-${messageObject['room']}`);
     let newMessage = document.createElement('p');
-    newMessage.innerHTML = message;
+    newMessage.innerHTML = messageObject['message'];
     chatBoard.appendChild(newMessage);
 }
 
@@ -22,6 +23,7 @@ roomLinks.forEach(link => link.addEventListener('click', function () {
     const chatBoard = document.querySelector('.messages-board');
     let newBoard = document.createElement('div');
     newBoard.classList.add('board');
+    newBoard.id = `board-${roomNumber}`
     newBoard.innerHTML =
         `
         <h3>Room ${roomNumber}</h3>

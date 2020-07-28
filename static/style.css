@@ -1,5 +1,23 @@
-.messages-board {
+.rooms {
     display: inline-block;
+    margin: 20px;
+    border: solid black 2px;
+    border-radius: 5px;
+    width: 80px;
+    text-align: center;
+}
+
+.board {
+    display: inline-block;
+    margin: 20px;
+    border: solid black 2px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+}
+
+.rooms p:hover {
+    font-weight: bold;
 }
 
 body {
