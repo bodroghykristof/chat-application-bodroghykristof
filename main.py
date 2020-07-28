@@ -1,9 +1,20 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_socketio import SocketIO, send
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app)
+
+
+@socketio.on('message')
+def mirror_messages(message):
+    print('Message: ' + message)
+    send(message, broadcast=True)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
