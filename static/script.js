@@ -25,6 +25,7 @@ function sendMessageToServer() {
     let newMessage = document.querySelector('#message').value;
     document.querySelector('#message').value =  '';
     socket.send(newMessage);
+    inputField.addEventListener('input', displayTyping);
 }
 
 // Events for typing
@@ -34,5 +35,6 @@ const inputField = document.querySelector('#message');
 inputField.addEventListener('input', displayTyping);
 
 function displayTyping() {
-    alert('Hey');
+    socket.send('User is typing...')
+    inputField.removeEventListener('input', displayTyping);
 }
